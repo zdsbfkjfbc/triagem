@@ -1,0 +1,91 @@
+# ==============================
+# Python / FastAPI
+# ==============================
+# Ambientes Virtuais
+.venv/
+venv/
+env/
+.env
+
+# Cache Compilado
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+
+# Pacotes (Distribuições)
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+share/python-wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# Ferramentas e Testes
+.pytest_cache/
+.coverage
+htmlcov/
+.nox/
+.tox/
+coverage.xml
+*.cover
+*.log
+nosetests.xml
+.hypothesis/
+.ruff_cache/
+.mypy_cache/
+
+# ==============================
+# Banco de Dados
+# ==============================
+*.sqlite3
+*.db
+triage.db
+
+# ==============================
+# Frontend / React / Node
+# ==============================
+# Dependências
+frontend/node_modules/
+node_modules/
+
+# Next.js / Builds
+frontend/.next/
+frontend/out/
+frontend/build/
+.next/
+
+# ==============================
+# Arquivos de Sistema Especiais
+# ==============================
+.DS_Store
+Thumbs.db
+Desktop.ini
+*~
+
+# ==============================
+# Pastas Locais / Ocultas Deste Projeto
+# ==============================
+.agent/
+.gemini/
+_scripts.txt
+*.log
+
+# ==============================
+# Lixos Temporários (PDFs testados na raiz, etc.)
+# ==============================
+a11y_report*.txt
+audit_report*.txt
+design.html
+force_migrate_v47.py
