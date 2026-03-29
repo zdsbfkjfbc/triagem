@@ -1,4 +1,4 @@
-# BRBPo Recruitment Engine (Triage V4.7)
+# Triagem
 
 > Sistema corporativo avançado para triagem automatizada de currículos utilizando Inteligência Artificial, Parseamento Estrutural e Matching Semântico. Desenvolvido para escalar pipelines de recrutamento com precisão cirúrgica.
 
