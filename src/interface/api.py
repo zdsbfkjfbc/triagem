@@ -1,4 +1,5 @@
-from fastapi import FastAPI, UploadFile, File, Form, Depends, HTTPException, BackgroundTasks, Security
+# ruff: noqa: E402
+from fastapi import FastAPI, UploadFile, File, Form, Depends, HTTPException, BackgroundTasks
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.security import OAuth2PasswordBearer, OAuth2PasswordRequestForm
 from starlette.middleware.base import BaseHTTPMiddleware
@@ -6,8 +7,7 @@ from starlette.responses import Response
 import os
 import shutil
 import tempfile
-import sys
-from typing import List, Optional
+from typing import List
 from datetime import datetime
 
 # 🛡️ Middleware de Segurança Customizado
@@ -151,7 +151,7 @@ async def run_batch_triage(
             # Limpeza de diretório temporário
             try:
                 shutil.rmtree(os.path.dirname(temp_paths[0]))
-            except:
+            except OSError:
                 pass
 
     background_tasks.add_task(process_triage_background, temp_paths, job_description, job_id, api_key, model_id)

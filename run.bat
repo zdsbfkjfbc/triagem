@@ -30,7 +30,7 @@ echo [1/2] Iniciando Backend (FastAPI)...
 start "BRBPO-API" cmd /k "cd /d %~dp0 && .venv\Scripts\python -m uvicorn src.interface.api:app --host 0.0.0.0 --port 8000 --reload"
 
 if not exist frontend\node_modules (
-  echo [setup] Instalando dependencias frontend (npm install)...
+  echo [setup] Instalando dependencias frontend via npm install...
   cd /d %~dp0\frontend
   npm install
   if errorlevel 1 (
@@ -40,6 +40,11 @@ if not exist frontend\node_modules (
   cd /d %~dp0
 )
 
+where npm >nul 2>nul
+if errorlevel 1 (
+  echo [erro] npm nao encontrado no PATH. Instale Node.js 18+ e tente novamente.
+  exit /b 1
+)
+
 echo [2/2] Iniciando Frontend (React)...
-cd /d %~dp0\frontend
-npm run dev
+start "BRBPO-WEB" cmd /k "cd /d %~dp0\frontend && npm run dev"

@@ -1,5 +1,5 @@
-from pydantic import BaseModel, Field, EmailStr
-from typing import List, Optional, Any
+from pydantic import BaseModel, Field
+from typing import Optional, Any
 from datetime import datetime
 
 # --- Enums Simulados (Strings fixas) ---
@@ -36,7 +36,7 @@ class TalentResultRead(BaseModel):
         from_attributes = True
 
 class StatusUpdateSchema(BaseModel):
-    status: str = Field(..., pattern="^(novo|triado|entrevista|aprovado|reprovado)$")
+    status: str = Field(..., pattern="^(novo|revisao_assistida|triado|entrevista|aprovado|reprovado)$")
 
 class NotesUpdateSchema(BaseModel):
     notes: str

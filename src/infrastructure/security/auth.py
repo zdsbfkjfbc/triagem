@@ -2,7 +2,7 @@ import bcrypt
 import jwt
 import os
 from datetime import datetime, timedelta
-from typing import Optional, Any
+from typing import Optional
 from sqlalchemy.orm import Session
 from ..database.models import User
 from dotenv import load_dotenv

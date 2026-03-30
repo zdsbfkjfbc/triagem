@@ -3,7 +3,7 @@ from sqlalchemy import create_engine
 import os
 from pathlib import Path
 from typing import List, Optional, Any
-from .models import Base, User, Job, CandidateModel, TriageResult, TriageTask, TriageError
+from .models import Base, Job, CandidateModel, TriageResult, TriageTask, TriageError
 
 # Configuração Padrão: SQLite Local - Caminho Absoluto Garantido
 PROJECT_ROOT = Path(__file__).resolve().parents[3]
@@ -66,9 +66,22 @@ class TriageRepository:
             return candidate
 
     # --- Operações de Resultados (CRM) ---
-    def save_triage_result(self, job_id: int, candidate_id: int, score: float, analysis_json: Any) -> TriageResult:
+    def save_triage_result(
+        self,
+        job_id: int,
+        candidate_id: int,
+        score: float,
+        analysis_json: Any,
+        status: str = "novo",
+    ) -> TriageResult:
         with self.get_session() as session:
-            result = TriageResult(job_id=job_id, candidate_id=candidate_id, score=score, analysis_json=analysis_json)
+            result = TriageResult(
+                job_id=job_id,
+                candidate_id=candidate_id,
+                score=score,
+                analysis_json=analysis_json,
+                status=status,
+            )
             session.add(result)
             session.commit()
             session.refresh(result)
@@ -140,7 +153,8 @@ class TriageRepository:
     def get_task_status(self, job_id: int) -> Optional[dict]:
         with self.get_session() as session:
             task = session.query(TriageTask).filter(TriageTask.job_id == job_id).first()
-            if not task: return None
+            if not task:
+                return None
             return {
                 "job_id": task.job_id,
                 "total": task.total_files,

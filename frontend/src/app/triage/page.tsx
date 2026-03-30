@@ -14,14 +14,17 @@ export default function TriagePage() {
   const [errors, setErrors] = useState<any[]>([]);
   const { toast } = useToast();
   const fileInputRef = useRef<HTMLInputElement>(null);
-  const pollingRef = useRef<NodeJS.Timeout | null>(null);
+  const pollingRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const pollInFlightRef = useRef(false);
 
   useEffect(() => { 
     fetchJobs()
       .then(setJobs)
       .catch(() => toast("Erro de Conexão", "Não foi possível carregar as vagas.", "error")); 
 
-    return () => { if (pollingRef.current) clearInterval(pollingRef.current); };
+    return () => {
+      if (pollingRef.current) clearTimeout(pollingRef.current);
+    };
   }, []);
 
   async function startPolling(jobId: number) {
@@ -31,6 +34,8 @@ export default function TriagePage() {
     const MAX_ERRORS = 3;
 
     pollingRef.current = setInterval(async () => {
+      if (pollInFlightRef.current) return;
+      pollInFlightRef.current = true;
       try {
         const statusData = await getTriageStatus(jobId);
         errorCount = 0; // Reset errors on success
@@ -59,8 +64,10 @@ export default function TriagePage() {
           setStatus("error");
           toast("Erro de Monitoramento", "Não foi possível sincronizar o progresso.", "error");
         }
+      } finally {
+        pollInFlightRef.current = false;
       }
-    }, 2000);
+    }, 5000);
   }
 
   function handleDrop(e: React.DragEvent) {
