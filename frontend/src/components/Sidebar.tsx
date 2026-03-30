@@ -30,7 +30,7 @@ export function SideNav() {
   return (
     <aside className="h-screen w-64 fixed left-0 top-0 bg-white dark:bg-slate-900 shadow-[4px_0_24px_rgba(47,93,82,0.04)] shadow-xl dark:shadow-none z-50 flex flex-col py-4 font-['Inter'] antialiased text-sm font-medium">
       <div className="text-2xl font-black tracking-tighter text-primary dark:text-emerald-500 px-6 py-8">
-        BRBPo
+        BRBPO
         <div className="text-[10px] uppercase tracking-[0.2em] font-bold text-slate-400 mt-1">Recruitment Engine</div>
       </div>
       

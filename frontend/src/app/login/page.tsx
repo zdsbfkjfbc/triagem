@@ -33,7 +33,7 @@ export default function LoginPage() {
         {/* Logo Oficial do Dashboard */}
         <div className="mb-12 text-center">
             <div className="text-4xl font-black tracking-tighter text-[#15453B]">
-                BRBPo
+                BRBPO
                 <div className="text-[10px] uppercase tracking-[0.3em] font-bold text-slate-400 mt-1">Recruitment Engine</div>
             </div>
         </div>

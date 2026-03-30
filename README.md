@@ -79,4 +79,4 @@ Este repositório atinge altos níveis de conformidade de engenharia de software
 ---
 
 ## ⚙️ License
-MIT - BRBPo Recruitment Core Systems.
+MIT - BRBPO Recruitment Core Systems.

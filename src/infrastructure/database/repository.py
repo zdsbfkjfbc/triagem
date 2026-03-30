@@ -1,11 +1,14 @@
 from sqlalchemy.orm import sessionmaker, Session
 from sqlalchemy import create_engine
 import os
+from pathlib import Path
 from typing import List, Optional, Any
 from .models import Base, User, Job, CandidateModel, TriageResult, TriageTask, TriageError
 
 # Configuração Padrão: SQLite Local - Caminho Absoluto Garantido
-DATABASE_URL = os.getenv("DATABASE_URL", "sqlite:///d:/Desenvolvimento/Triage/triage.db")
+PROJECT_ROOT = Path(__file__).resolve().parents[3]
+DEFAULT_SQLITE_PATH = PROJECT_ROOT / "triage.db"
+DATABASE_URL = os.getenv("DATABASE_URL", f"sqlite:///{DEFAULT_SQLITE_PATH.as_posix()}")
 
 class TriageRepository:
     def __init__(self, db_url: str = DATABASE_URL):
