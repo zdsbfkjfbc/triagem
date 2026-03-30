@@ -1,82 +1,65 @@
 # Triagem
 
-> Sistema corporativo avançado para triagem automatizada de currículos utilizando Inteligência Artificial, Parseamento Estrutural e Matching Semântico. Desenvolvido para escalar pipelines de recrutamento com precisão cirúrgica.
+Sistema corporativo para triagem automatizada de currículos com IA, parseamento estrutural e matching semântico.
 
-## 🚀 Quick Start
+## Quick Start
 
-O sistema foi arquitetado para desenvolvimento contínuo e escalável utilizando um ponto de entrada unificado. 
-
-**Requisitos Essenciais:**
+Requisitos:
 - Python 3.10+
 - Node.js 18+
-- Chave de API do OpenRouter (inserida no arquivo `.env` protegido)
 
-**Como iniciar a aplicação localmente:**
+Na raiz do projeto (Windows), execute:
 
-No diretório raiz (Windows), execute o orquestrador para iniciar simultaneamente o Backend e o Frontend:
 ```cmd
 .\run.bat
 ```
-*Isto irá compilar a aplicação e expor o painel em `http://localhost:3000` bem como a documentação Swagger da API em `http://localhost:8000/docs`.*
 
----
+Isso inicia:
+- Backend FastAPI em `http://localhost:8000`
+- Frontend Next.js em `http://localhost:3000`
+- Swagger em `http://localhost:8000/docs`
 
-## ✨ Features
+## Primeira execução (máquina nova)
 
-- **Triagem em Duas Fases Automáticas (Performance-First):**  
-  Aplica uma extração e pontuação lexical rápida inicial. Mutações e auditorias com LLMs avançados são disparadas **apenas** quando o candidato atinge o *Threshold* de `7.5` de fit para aquela vaga.
-- **Agnóstico a LLMs (OpenRouter Integration):**  
-  Suporta +26 modelos de alto raciocínio de graça e pagos (incluindo Gemini, Claude-3.5 e Llama) garantindo ZERO vendor-lock in.
-- **Extração Semântica Criteriosa (Língua Portuguesa Enforced):**  
-  Detecção inteligente de hard skills, soft skills, proficiência em idiomas e alertas sobre eventuais inconsistências no histórico profissional do candidato, obrigando o retorno do robô estritamente em Português do Brasil.
-- **Painel Editorial de Revisão (Claude-Style Clean UI):**  
-  Interface em Modo Pesquisa (Research Mode). Limpa, veloz e minimalista; ajuda recrutadores a visualizarem milhares de currículos sem cansaço visual, substituindo o excesso de cores por um design utilitário.
-- **Full CRUD & SQLite Modularizado:**  
-  Persistência de eventos e banco de dados *Zero-config* (embeddable). Facilidade completa para deletar processos seletivos e candidatos descartados instantaneamente.
+1. Clone o repositório.
+2. Abra um terminal na raiz.
+3. Execute `.\run.bat`.
+4. Em outro terminal, crie o usuário admin inicial:
 
----
+```cmd
+.\.venv\Scripts\python scripts\seed_admin.py
+```
 
-## 🏗️ Architecture Stack
+5. Faça login em `http://localhost:3000` com:
+- usuário: `admin`
+- senha: `admin123`
 
-Nossas escolhas seguiram um padrão Clean Architecture priorizando **Responsabilidade Única** e **Separação de Domínios**.
+## Se algo falhar
 
-| Camada | Tecnologia | Função |
-|----------|-------------|---------|
-| **Backend** | FastAPI (Python) | API REST extremamente rápida, assíncrona e documentada |
-| **Banco de Dados** | SQLite com SQLAlchemy | Modelagem relacional para Jobs e Candidatos |
-| **Integração IA** | LlamaIndex / OpenRouter | Conexão semântica via Prompt Providers customizados |
-| **Frontend** | Next.js (TS React) | App Router, SSR/CSR, e gerência paralela de estados |
-| **Styling** | TailwindCSS v4 | Utility first, tipografia de pesquisa e responsividade extrema |
+- Erro de `py` não reconhecido: instale Python e marque "Add Python to PATH".
+- Erro de `npm`: instale Node.js 18+ e rode `.\run.bat` novamente.
+- Porta ocupada (`3000` ou `8000`): feche processos antigos usando essas portas.
+- Login falhando: rode novamente `.\.venv\Scripts\python scripts\seed_admin.py`.
 
----
+## Stack
 
-## 📂 Visão Geral de Diretórios
+- Backend: FastAPI
+- Banco: SQLite + SQLAlchemy
+- Frontend: Next.js + React
+- Styling: TailwindCSS
+- IA: OpenRouter
+
+## Estrutura
 
 ```text
 /Triage
-├── src/                      # Backend Core Application
-│   ├── application/          # Regras de Negócio e Serviços (Ex: triage_service.py)
-│   ├── infrastructure/       # Banco de Dados (Repository, SQLite) e IA (OpenRouter)
-│   ├── interface/            # Rotas REST da FastAPI (api.py)
-│   └── lib/                  # Utilitários de parsing (PDF Reader) e Helpers
-├── frontend/                 # Frontend Modern App
-│   ├── src/app/              # Next.js App Router (Dashboard, Core UI)
-│   ├── src/components/       # Componentes ShadCN e Botões modulares
-│   └── src/lib/              # Requisições API e Client Side utils
-├── .agent/                    # (Ignorado no Git) Conhecimento Arquitetural e Prompts Internos
-└── run.bat                   # Entrypoint Global de Execução
+├── src/
+├── frontend/
+├── scripts/
+├── config/
+└── run.bat
 ```
 
----
+## License
 
-## 🛡️ Segurança e Práticas do Repositório
-
-Este repositório atinge altos níveis de conformidade de engenharia de software:
-1. **Blindagem de Segredos:** Arquivos iterativos, `__pycache__`, pastas `node_modules` massivas, e arquivos `.env` jamais são commitados. Nosso robô possui `.gitignore` reforçado.
-2. **Separação Lógica de Logs:** Documentações da estratégia de agentes internos (`.agent/`) são geridas puramente fora do escopo visível da equipe comum.
-3. **Database Localized:** O Banco de Dados operacional não existe no GitHub para proteger o PII (Personally Identifiable Information) dos candidatos importados durante o debug de desenvolvimento.
-
----
-
-## ⚙️ License
 MIT - BRBPO Recruitment Core Systems.
