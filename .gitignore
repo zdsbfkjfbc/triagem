@@ -65,6 +65,7 @@ frontend/.next/
 frontend/out/
 frontend/build/
 .next/
+*.tsbuildinfo
 
 # ==============================
 # Arquivos de Sistema Especiais
